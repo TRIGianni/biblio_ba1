@@ -27,3 +27,8 @@ class Library:
             raise ValueError(f"Critère de tri invalide : {by!r}. Utiliser 'title' ou 'year'.")
         key = (lambda b: b.title.lower()) if by == "title" else (lambda b: b.year)
         return sorted(self._books, key=key)
+    
+    def search_by_author(self, keyword: str) -> List[Book]:
+        """Recherche les livres dont l'auteur contient le mot-clé."""
+        keyword = keyword.lower()
+        return [b for b in self._books if keyword in b.author.lower()]
